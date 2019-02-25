@@ -10,6 +10,11 @@ use Mix.Config
 config :hello,
   ecto_repos: [Hello.Repo]
 
+# config :hound, driver: "phantomjs"
+config :hound, driver: "chrome_driver"
+
+config :hound, retry_time: 1000
+
 # Configures the endpoint
 config :hello, HelloWeb.Endpoint,
   url: [host: "localhost"],

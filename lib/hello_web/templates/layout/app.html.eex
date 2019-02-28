@@ -3,11 +3,14 @@
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content="">
+    <meta name="author" content="wold@afomi.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Hello · Phoenix Framework</title>
+    <title>Hello · Phoenix Trello Tutorial</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
+    <main id="main_container" role="main"></main>
     <header>
       <section class="container">
         <nav role="navigation">

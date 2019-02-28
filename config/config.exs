@@ -12,8 +12,14 @@ config :hello,
 
 # config :hound, driver: "phantomjs"
 config :hound, driver: "chrome_driver"
-
 config :hound, retry_time: 1000
+
+config :guardian, Guardian,
+  issuer: "PhoenixTrello",
+  ttl: { 3, :days },
+  verify_issuer: true,
+  secret_key: "PxvnraXUKMgIeKotV9OFRHuDEujM6pBf/I0rRcxfP7aHfOInGbpn2LpnqBe01v+d",
+  serializer: PhoenixTrello.GuardianSerializer
 
 # Configures the endpoint
 config :hello, HelloWeb.Endpoint,

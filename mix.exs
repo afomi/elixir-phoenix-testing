@@ -20,7 +20,7 @@ defmodule Hello.MixProject do
   def application do
     [
       mod: {Hello.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :comeonin]
     ]
   end
 
@@ -33,6 +33,8 @@ defmodule Hello.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:comeonin, "~> 5.1"},
+      {:guardian, "~> 1.2.1"},
       {:hound, "~> 1.0"},
       {:phoenix, "~> 1.4.1"},
       {:phoenix_pubsub, "~> 1.1"},

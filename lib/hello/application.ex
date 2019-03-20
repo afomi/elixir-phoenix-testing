@@ -4,16 +4,19 @@ defmodule Hello.Application do
   @moduledoc false
 
   use Application
+  import Supervisor.Spec, warn: false
+
 
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
-      Hello.Repo,
+      supervisor(Hello.Repo, []),
       # Start the endpoint when the application starts
-      HelloWeb.Endpoint
+      HelloWeb.Endpoint,
       # Starts a worker by calling: Hello.Worker.start_link(arg)
       # {Hello.Worker, arg},
+      supervisor(Hello.BoardChannel.Supervisor, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

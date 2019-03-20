@@ -1,5 +1,5 @@
-defmodule Hello.RegistrationController  do
-  use Hello.Web, :controller
+defmodule HelloWeb.RegistrationController  do
+  use HelloWeb, :controller
 
   alias Hello.{Repo, User}
 
@@ -10,16 +10,16 @@ defmodule Hello.RegistrationController  do
 
     case Repo.insert(changeset) do
       {:ok, user} ->
-        {:ok, jwt, _full_claims} = Guardian.encode_and_sign(user, :token)
+        {:ok, jwt, _full_claims} = user |> Hello.Guardian.encode_and_sign(user)
 
         conn
         |> put_status(:created)
-        |> render(Hello.SessionView, "show.json", jwt: jwt, user: user)
+        |> render(HelloWeb.SessionView, "show.json", jwt: jwt, user: user)
 
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Hello.RegistrationView, "error.json", changeset: changeset)
+        |> render("error.json", changeset: changeset)
     end
   end
 end

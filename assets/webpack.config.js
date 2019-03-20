@@ -1,5 +1,6 @@
+'use strict';
+
 const path = require('path');
-const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -13,12 +14,10 @@ module.exports = (env, options) => ({
       new OptimizeCSSAssetsPlugin({})
     ]
   },
-  entry: {
-      './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
-  },
+  entry: './js/app.js',
   output: {
-    filename: 'app.js',
-    path: path.resolve(__dirname, '../priv/static/js')
+   filename: 'app.js',
+   path: path.resolve(__dirname, '../priv/static/js')
   },
   module: {
     rules: [

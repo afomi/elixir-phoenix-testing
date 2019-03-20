@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
-    <main id="main_container" role="main"></main>
+    <main id="main_container" role="main">ABC</main>
     <header>
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+            <li><a href="/sign_up">Sign Up</a></li>
+            <li><a href="/sign_in">Sign In</a></li>
           </ul>
         </nav>
         <a href="http://phoenixframework.org/" class="phx-logo">

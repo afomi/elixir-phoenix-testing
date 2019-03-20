@@ -33,6 +33,7 @@ defmodule Hello.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.0"},
       {:comeonin, "~> 5.1"},
       {:guardian, "~> 1.2.1"},
       {:hound, "~> 1.0"},

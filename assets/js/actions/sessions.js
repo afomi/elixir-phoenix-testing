@@ -69,7 +69,6 @@ const Actions = {
         setCurrentUser(dispatch, data);
       })
       .catch(function (error) {
-        console.log(error);
         dispatch(push('/sign_in'));
       });
     };

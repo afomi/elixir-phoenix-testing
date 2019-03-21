@@ -17,11 +17,25 @@ defmodule HelloWeb do
   and import those modules here.
   """
 
+  def model do
+    quote do
+      use Ecto.Schema
+
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query, only: [from: 1, from: 2]
+    end
+  end
+
   def controller do
     quote do
       use Phoenix.Controller, namespace: HelloWeb
 
       import Plug.Conn
+      alias Hello.Repo
+      import Ecto
+      import Ecto.Query, only: [from: 1, from: 2]
+
       import HelloWeb.Gettext
       alias HelloWeb.Router.Helpers, as: Routes
     end
@@ -34,7 +48,7 @@ defmodule HelloWeb do
         namespace: HelloWeb
 
       # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
+      import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 1, get_flash: 2, view_module: 1]
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
@@ -56,6 +70,11 @@ defmodule HelloWeb do
   def channel do
     quote do
       use Phoenix.Channel
+
+      alias PhoenixTrello.Repo
+      import Ecto
+      import Ecto.Query, only: [from: 1, from: 2]
+      
       import HelloWeb.Gettext
     end
   end

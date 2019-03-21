@@ -4,8 +4,6 @@ defmodule Hello.Board do
   import Ecto.Query
   import Ecto.Queryable
 
-  # @derive {Jason.Encoder, only: [:id, :first_name, :last_name, :email]}
-
   alias __MODULE__
   alias Hello.{Repo, Permalink, List, Comment, Card, UserBoard, User}
 
@@ -66,7 +64,7 @@ defmodule Hello.Board do
   end
 end
 
-defimpl Phoenix.Param, for: Board do
+defimpl Phoenix.Param, for: Hello.Board do
   def to_param(%{slug: slug, id: id}) do
     "#{id}-#{slug}"
   end

@@ -17,7 +17,6 @@ defmodule Hello.User do
     has_many :user_boards, UserBoard
     has_many :boards, through: [:user_boards, :board]
 
-
     timestamps()
   end
 

@@ -34,11 +34,11 @@ defmodule Hello.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 2.0"},
-      {:comeonin, "~> 5.1"},
+      {:comeonin, "5.1.1"},
       {:guardian, "~> 1.2.1"},
-      {:hound, "~> 1.0"},
-      {:phoenix, "~> 1.4.1"},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:hound, "1.1.0"},
+      {:phoenix, "1.4.2"},
+      {:phoenix_pubsub, "1.1.2"},
       {:phoenix_ecto, "~> 4.0"},
       {:ecto_sql, "~> 3.0"},
       {:postgrex, ">= 0.0.0"},
@@ -46,7 +46,7 @@ defmodule Hello.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "2.0.2"}
     ]
   end
 

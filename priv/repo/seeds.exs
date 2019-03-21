@@ -16,7 +16,7 @@ alias Hello.{Repo, User}
   %{
     first_name: "Example",
     last_name: "User",
-    email: "user@example.com",
+    email: "user@lvh.me",
     password: "password"
   },
 ]

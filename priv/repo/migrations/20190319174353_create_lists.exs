@@ -3,9 +3,9 @@ defmodule Hello.Repo.Migrations.CreateLists do
 
   def change do
     create table(:lists) do
-      add :name, :string
-      add :position, :integer
-      add :board_id, references(:boards, on_delete: :nothing)
+      add :name, :string, null: false
+      add :position, :integer, default: 0
+      add :board_id, references(:boards, on_delete: :delete_all)
 
       timestamps()
     end

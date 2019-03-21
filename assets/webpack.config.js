@@ -7,6 +7,9 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
+function join(dest) { return path.resolve(__dirname, dest); }
+function web(dest) { return join('static/' + dest); }
+
 module.exports = (env, options) => ({
   optimization: {
     minimizer: [
@@ -14,10 +17,18 @@ module.exports = (env, options) => ({
       new OptimizeCSSAssetsPlugin({})
     ]
   },
-  entry: './js/app.js',
+  entry: {
+    application: [
+      web('css/application.sass'),
+      './js/app.js',
+    ],
+  },
   output: {
-   filename: 'app.js',
-   path: path.resolve(__dirname, '../priv/static/js')
+    filename: 'app.js',
+    path: path.resolve(__dirname, '../priv/static/js')
+  },
+  resolve: {
+    extensions: ['.css', '.js', '.sass', 'scss']
   },
   module: {
     rules: [
@@ -29,13 +40,22 @@ module.exports = (env, options) => ({
         }
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          "style-loader",
+          'css-loader',
+          {
+            loader: "sass-loader",
+            options: {
+              includePaths: [__dirname +  '/node_modules']
+            }
+          }
+        ]
       }
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: '../css/app.css' }),
+    new MiniCssExtractPlugin({ filename: 'css/app.css' }),
     new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
   ]
 });

@@ -10,7 +10,7 @@ defmodule HelloWeb.RegistrationController  do
 
     case Repo.insert(changeset) do
       {:ok, user} ->
-        {:ok, jwt, _full_claims} = user |> Hello.Guardian.encode_and_sign(user)
+        {:ok, jwt, _full_claims} = Hello.Guardian.encode_and_sign(user)
 
         conn
         |> put_status(:created)

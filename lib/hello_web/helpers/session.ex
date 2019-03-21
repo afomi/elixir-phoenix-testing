@@ -1,10 +1,8 @@
-require IEx
 defmodule HelloWeb.Session do
   alias Hello.{Repo, User}
 
   def authenticate(%{"email" => email, "password" => password}) do
     user = Repo.get_by(User, email: String.downcase(email))
-    IEx.pry
     case check_password(user, password) do
       true -> {:ok, user}
       _ -> :error

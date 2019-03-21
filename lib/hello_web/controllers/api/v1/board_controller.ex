@@ -30,15 +30,21 @@ defmodule HelloWeb.BoardController do
       |> Ecto.build_assoc(:owned_boards)
       |> Board.changeset(board_params)
 
-    case Repo.insert(changeset) do
-      {:ok, board} ->
-        conn
-        |> put_status(:created)
-        |> render("show.json", board: board )
-      {:error, changeset} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render("error.json", changeset: changeset)
+    if changeset.valid? do
+      board = Repo.insert!(changeset)
+
+      board
+      |> Ecto.build_assoc(:user_boards)
+      |> UserBoard.changeset(%{user_id: current_user.id})
+      |> Repo.insert!
+
+      conn
+      |> put_status(:created)
+      |> render("show.json", board: board )
+    else
+      conn
+      |> put_status(:unprocessable_entity)
+      |> render("error.json", changeset: changeset)
     end
   end
 end

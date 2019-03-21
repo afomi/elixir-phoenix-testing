@@ -1,11 +1,11 @@
-defmodule Hello.BoardChannel do
+defmodule HelloWeb.BoardChannel do
   @moduledoc """
   Board channel
   """
 
   use HelloWeb, :channel
 
-  alias Hello.{User, Board, UserBoard, List, Card, Comment, CardMember}
+  alias Hello.{Repo, User, Board, UserBoard, List, Card, Comment, CardMember}
   alias Hello.BoardChannel.Monitor
 
   def join("boards:" <> board_id, _params, socket) do
@@ -207,12 +207,16 @@ defmodule Hello.BoardChannel do
   end
 
   def terminate(_reason, socket) do
-    board_id = Board.slug_id(socket.assigns.board)
-    user_id = socket.assigns.current_user.id
+    if !socket.assigns.board do
+      :ok
+    else
+      board_id = Board.slug_id(socket.assigns.board)
+      user_id = socket.assigns.current_user.id
 
-    broadcast! socket, "user:left", %{users: Monitor.user_left(board_id, user_id)}
+      broadcast! socket, "user:left", %{users: Monitor.user_left(board_id, user_id)}
 
-    :ok
+      :ok
+    end
   end
 
   defp get_current_board(socket, board_id) do

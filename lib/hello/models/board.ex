@@ -2,7 +2,6 @@ defmodule Hello.Board do
   use Ecto.Schema
   import Ecto.Changeset
   import Ecto.Query
-  import Ecto.Queryable
 
   alias __MODULE__
   alias Hello.{Repo, Permalink, List, Comment, Card, UserBoard, User}

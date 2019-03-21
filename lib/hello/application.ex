@@ -10,10 +10,10 @@ defmodule Hello.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Start the Ecto repository
-      supervisor(Hello.Repo, []),
       # Start the endpoint when the application starts
-      HelloWeb.Endpoint,
+      supervisor(HelloWeb.Endpoint, []),
+      # Start the Ecto repository
+      worker(Hello.Repo, []),
       # Starts a worker by calling: Hello.Worker.start_link(arg)
       # {Hello.Worker, arg},
       supervisor(Hello.BoardChannel.Supervisor, []),
